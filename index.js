@@ -1,6 +1,7 @@
 const express = require('express');
+const fetch = require('node-fetch'); // Ensure fetch is imported
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001; // Use an environment variable or default to 3001
 
 app.get('/api/restaurants', async (req, res) => {
   try {
@@ -23,12 +24,6 @@ app.get('/api/restaurants', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
-
-
 
 app.get('/api/menu/:resId', async (req, res) => {
   const { resId } = req.params; 
